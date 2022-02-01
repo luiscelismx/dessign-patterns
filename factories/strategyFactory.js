@@ -15,41 +15,27 @@ export default class StrategyFactory {
   }
 
   events = {
-    OrderStateChanged: () => {
+    Event1: () => {
       return new PartialUpdateStrategy(
-        this.message.resourceUserProvidedIdentifiers.orderNumber,
-        'orderState',
-        this.message.orderState
+        this.message.resourceUserProvidedIdentifiers.documentId,
+        'event1',
+        this.message.event1State
       );
     },
-    OrderPaymentStateChanged: () => {
+    Event2: () => {
       return new PartialUpdateStrategy(
-        this.message.resourceUserProvidedIdentifiers.orderNumber,
-        'paymentState',
-        this.message.paymentState
+        this.message.resourceUserProvidedIdentifiers.documentId,
+        'event2',
+        this.message.event2State
       );
     },
-    OrderShipmentStateChanged: () => {
+    Event3: () => {
       return new PartialUpdateStrategy(
-        this.message.resourceUserProvidedIdentifiers.orderNumber,
-        'shipmentState',
-        this.message.shipmentState
+        this.message.resourceUserProvidedIdentifiers.documentId,
+        'event3',
+        this.message.event3State
       );
-    },
-    OrderCustomerSet: () => {
-      return new PartialUpdateStrategy(
-        this.message.resourceUserProvidedIdentifiers.orderNumber,
-        'customerId',
-        this.message.customer.id
-      );
-    },
-    OrderCustomerEmailSet: () => {
-      return new PartialUpdateStrategy(
-        this.message.resourceUserProvidedIdentifiers.orderNumber,
-        'customerEmail',
-        this.message.email
-      );
-    },
+    },  
   };
 
   /**
