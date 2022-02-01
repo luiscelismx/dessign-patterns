@@ -3,9 +3,9 @@ import Strategy from '../strategy';
  * Strategy to update part of a document.
  */
 class PartialUpdateStrategy extends Strategy {
-  constructor(orderNumber, field, value) {
+  constructor(documentId, field, value) {
     super();
-    this.orderNumber = orderNumber;
+    this.documentId = documentId;
     this.field = field;
     this.value = value;
   }
@@ -18,10 +18,10 @@ class PartialUpdateStrategy extends Strategy {
   async getParams() {
     const params = {
       httpMethod: 'POST',
-      requestPath: `orders/_update/${this.orderNumber}`,
+      requestPath: `index/_update/${this.documentId}`,
       payload: {
         doc: {
-          order: {
+          documentId: {
             [`${this.field}`]: `${this.value}`,
           },
         },
