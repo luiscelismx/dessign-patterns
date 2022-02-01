@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import OrderService from '../../services/orderService';
+import MyService from '../../services/myService';
 import Strategy from '../strategy';
 
 /**
@@ -17,16 +17,16 @@ class FullUpdateStrategy extends Strategy {
    */
   async getParams() {
     // Get summary order
-    const orderService = OrderService.default();
-    const order = await orderService.getExtendedOrderInfo(
+    const myService = MyService.default();
+    const document = await myService.getExtendedInfo(
       this.data.resource.id,
-      this.data.projectKey
+      this.data.key
     );
 
     const params = {
       httpMethod: 'PUT',
-      requestPath: `orders/_doc/${order.orderNumber}`,
-      payload: { order },
+      requestPath: `index/_doc/${document.documentId}`,
+      payload: { document },
     };
     return params;
   }
